@@ -1,19 +1,20 @@
-var rect = require('./rectangle')
+var rect =  require('./rectangle')
 
 let solveRect = (l,b) => {
     console.log("Solving for rectangle: " + l + " + " +  b  )
 
-    if (l<=0 || b <=0){
-        console.log("Rectangle dimension cannot be zero")
-    }
-    else{
-        console.log("area of rectangle = " , + rect.area(l,b));
-        console.log("perimeter of rectangle = " , + rect.perimeter(l,b));
-
-    }
+    //callback using rect
+    rect(l,b,(err, rectangle) => {
+        if (err) { //if error occurs during callback
+            console.log("Error: " + err.message);
+        }
+        else {
+            console.log("Area: " + rectangle.area());
+            console.log("Perimeter: " + rectangle.perimeter());
+        }
+    });
+    //print first then prints callback
+    console.log("last part of solveRect");
 }
 
 solveRect(2,4);
-solveRect(3,5);
-solveRect(0,5);
-solveRect(-1,3);
